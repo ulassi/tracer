@@ -1,0 +1,7 @@
+
+ trace Started 
+------------------------ 
+parse scene : xml/sampleScene.xml
+ Rendering frame 
+ Done rendering : Success.
+Render took: 55secs.

@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>
+XML SCHEMA for raytracer scene file.
+
+Author: Urban Lassi
+2004, 27 May
+	</xs:documentation>
+	</xs:annotation>
+	<!-- some simple and useful types -->
+	<xs:simpleType name="list-float">
+		<xs:list itemType="xs:float" />
+	</xs:simpleType>
+	<xs:simpleType name="vec3f">
+		<xs:restriction base="list-float">
+			<xs:length value="3"></xs:length>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Scene file definition -->
+	<xs:element name="scene">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="shape">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="geometry">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="sphere">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="radius" type="xs:float" default="1" />
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="plane">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="abcd" type="vec4f" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="polyshape">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="file" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="transform">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="translation" type="vec3f" default="0 0 0"></xs:element>
+										<xs:element name="rotation">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="axis" type="vec3f" default="0 1 0" />
+													<xs:element name="angle" type="xs:float" default="0" />
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="shader">
+								<xs:complexType>
+									<xs:choice>
+										<!-- heres all shaders allowed -->
+										<xs:element name="shaderinput" type="shader" />
+										<xs:element name="operatorinput" type="shader" />
+										<xs:element name="color" type="vec3f" />
+										<xs:element name="const" type="float" />
+										<!-- end shader choice-->
+									</xs:choice>
+									<xs:attribute name="name" type="xs:string" />
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="light">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="transform" type="transform" />
+							<xs:element name="lightshape">
+								<xs:complexType>
+									<xs:choice>
+										<!-- different lightsources-->
+										<xs:element name="pointlight">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="lightcolor" type="vec3f" default="1 1 1" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="arealight">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="lightcolor" type="vec3f" default="1 1 1" />
+													<xs:element name="rightaxis" type="vec3f" />
+													<xs:element name="upaxis" type="vec3f" />
+													<xs:element name="sizeup" type="xs:float" />
+													<xs:element name="sizeright" type="xs:float" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="hemisphere">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="lightcolor" type="vec3f" default="1 1 1" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<!-- end lightsources -->
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="multisample" type="xs:int" default="1" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="camera">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="eyepoint" type="vec3f" />
+							<xs:element name="orientation" type="vec3f" />
+							<xs:element name="aspectratio" type="xs:float" />
+							<xs:element name="imageplanedistance" type="xs:float" />
+							<xs:element name="fov" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="vec4f">
+		<xs:restriction base="list-float">
+			<xs:length value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

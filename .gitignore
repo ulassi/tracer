@@ -1,0 +1,15 @@
+# Specify filepatterns you want git to ignore.
+*.obj
+*.ilk
+*.suo
+*.exe
+*.pdb
+*.log
+*.tlog
+*.htm
+*.idb
+*.raw
+*.user
+*.filters
+*.db
+*.ncb

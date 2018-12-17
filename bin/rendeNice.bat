@@ -1,0 +1,1 @@
+trace.exe poo.txt -w 640 -n 2

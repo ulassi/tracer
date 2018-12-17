@@ -1,0 +1,14 @@
+<?xml version='1.0' ?>
+<!-- bloody hell-->
+<scene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="tracerscene.xsd">
+	<shape>
+		<geometry>
+			<sphere>
+				this is sphere
+				<radius>2</radius>				
+			</sphere>
+			this is geometry
+		</geometry>
+		this is a shape
+	</shape>
+</scene>

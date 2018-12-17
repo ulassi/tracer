@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B162CA0D-A1F7-41B9-A2E3-183209E630E8}</ProjectGuid>
+    <RootNamespace>raytrace</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.27924.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>src;src\math;src\imagelib;src\lwoloader;src\tracerInternal;src\tracerLights;src\tracerShaders;src\tracerShapes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>lwoloader;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)raytrace.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>src;src\math;src\imagelib;src\lwoloader;src\tracerInternal;src\tracerLights;src\tracerShaders;src\tracerShapes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>lwoloader;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\aWindow.cpp" />
+    <ClCompile Include="src\imagelib\ImageLib.cpp" />
+    <ClCompile Include="src\lwoloader\LWOobj.cpp" />
+    <ClCompile Include="src\lwoloader\LWOReader.cpp" />
+    <ClCompile Include="src\math\tMath.cpp" />
+    <ClCompile Include="src\raytrace.cpp" />
+    <ClCompile Include="src\tracerInternal\tCamera.cpp" />
+    <ClCompile Include="src\tracerInternal\tScene.cpp" />
+    <ClCompile Include="src\tracerInternal\tSceneLoader.cpp" />
+    <ClCompile Include="src\tracerInternal\tShapeLoader.cpp" />
+    <ClCompile Include="src\tracerInternal\tSphericalMapper2D.cpp" />
+    <ClCompile Include="src\tracerInternal\tTexture2d.cpp" />
+    <ClCompile Include="src\tracerInternal\tTracer.cpp" />
+    <ClCompile Include="src\tracerLights\tHemisphereLight.cpp" />
+    <ClCompile Include="src\tracerShaders\tPolygon.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderData.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderDiffuse.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderOperator.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderOpMult.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderPhongSpecular.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderPlugs.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderTextureImage2D.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderTraceReflection.cpp" />
+    <ClCompile Include="src\tracerShaders\tShaderTraceRefraction.cpp" />
+    <ClCompile Include="src\tracerShapes\tAABB.cpp" />
+    <ClCompile Include="src\tracerShapes\tBVH.cpp" />
+    <ClCompile Include="src\tracerShapes\tPolyShape.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\aWindow.h" />
+    <ClInclude Include="src\imagelib\ImageLib.h" />
+    <ClInclude Include="src\lwoloader\LWOobj.h" />
+    <ClInclude Include="src\lwoloader\LWOReader.h" />
+    <ClInclude Include="src\math\matrix3.h" />
+    <ClInclude Include="src\math\matrix4.h" />
+    <ClInclude Include="src\math\vec3.h" />
+    <ClInclude Include="src\optimize.h" />
+    <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\tracerInternal\tCamera.h" />
+    <ClInclude Include="src\tracerInternal\tColor.h" />
+    <ClInclude Include="src\tracerInternal\tImage.h" />
+    <ClInclude Include="src\tracerInternal\tIntersection.h" />
+    <ClInclude Include="src\tracerInternal\tMath.h" />
+    <ClInclude Include="src\tracerInternal\tRay.h" />
+    <ClInclude Include="src\tracerInternal\tScene.h" />
+    <ClInclude Include="src\tracerInternal\tSceneLoader.h" />
+    <ClInclude Include="src\tracerInternal\tShapeLoader.h" />
+    <ClInclude Include="src\tracerInternal\tSphericalMapper2D.h" />
+    <ClInclude Include="src\tracerInternal\tTexture2d.h" />
+    <ClInclude Include="src\tracerInternal\tTracer.h" />
+    <ClInclude Include="src\tracerInternal\tUVmapper2D.h" />
+    <ClInclude Include="src\tracerInternal\typedefs.h" />
+    <ClInclude Include="src\tracerLights\tAreaLight.h" />
+    <ClInclude Include="src\tracerLights\tHemisphereLight.h" />
+    <ClInclude Include="src\tracerLights\tLightSource.h" />
+    <ClInclude Include="src\tracerLights\tPointLight.h" />
+    <ClInclude Include="src\tracerShaders\tMultiSurfaceShader.h" />
+    <ClInclude Include="src\tracerShaders\tPolygon.h" />
+    <ClInclude Include="src\tracerShaders\tShader.h" />
+    <ClInclude Include="src\tracerShaders\tShader3DChecker.h" />
+    <ClInclude Include="src\tracerShaders\tShaderConstant.h" />
+    <ClInclude Include="src\tracerShaders\tShaderData.h" />
+    <ClInclude Include="src\tracerShaders\tShaderDiffuse.h" />
+    <ClInclude Include="src\tracerShaders\tShaderGlossSampler.h" />
+    <ClInclude Include="src\tracerShaders\tShaderHemisphereSampler.h" />
+    <ClInclude Include="src\tracerShaders\tShaderOpAdd.h" />
+    <ClInclude Include="src\tracerShaders\tShaderOperator.h" />
+    <ClInclude Include="src\tracerShaders\tShaderOpMult.h" />
+    <ClInclude Include="src\tracerShaders\tShaderPhongSpecular.h" />
+    <ClInclude Include="src\tracerShaders\tShaderPlugs.h" />
+    <ClInclude Include="src\tracerShaders\tShaderTextureImage2D.h" />
+    <ClInclude Include="src\tracerShaders\tShaderTraceReflection.h" />
+    <ClInclude Include="src\tracerShaders\tShaderTraceRefraction.h" />
+    <ClInclude Include="src\tracerShaders\tShaderTranslucency.h" />
+    <ClInclude Include="src\tracerShapes\tAABB.h" />
+    <ClInclude Include="src\tracerShapes\tBSPtree.h" />
+    <ClInclude Include="src\tracerShapes\tBVH.h" />
+    <ClInclude Include="src\tracerShapes\tInfinitePlane.h" />
+    <ClInclude Include="src\tracerShapes\tPolyShape.h" />
+    <ClInclude Include="src\tracerShapes\tShape.h" />
+    <ClInclude Include="src\tracerShapes\tSphere.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

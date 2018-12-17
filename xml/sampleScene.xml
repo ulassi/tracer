@@ -1,0 +1,93 @@
+<?xml version='1.0' ?>
+<!-- bloody hell-->
+<scene xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="tracerscene.xsd">
+	<shape>
+		<geometry>
+			<sphere>
+				<radius>2</radius>
+			</sphere>
+		</geometry>
+		<transform>
+			<translation>2 2 0</translation>
+			<rotation><axis>1 0 0</axis><angle>45</angle></rotation>
+		</transform>
+		<shader>
+			<shaderoperator>
+				<shaderinput name="diffuseoperand">
+					<color name="diffusecolor">
+						0.9 0.2 0.2
+					</color>
+					diffuse
+				</shaderinput>
+				<shaderinput name="specularoperand">
+					specular
+					<const name="exponent">
+						64
+					</const>
+					<color name="specularcolor">
+						1 0.8 0.6
+					</color>
+				</shaderinput>
+				add
+			</shaderoperator>
+		</shader>
+	</shape>
+	<shape>
+		<geometry>
+			<sphere>
+				<radius>1</radius>
+			</sphere>
+		</geometry>
+		<transform>
+			<translation>0 0 0</translation>
+			<rotation><axis>1 0 0</axis><angle>45</angle></rotation>
+		</transform>
+		<shader>
+			<shaderinput>
+				<color name="diffusecolor">
+					0.1 0.7 0.5
+				</color>
+				diffuse
+			</shaderinput>
+		</shader>
+	</shape>
+	<shape>
+		<geometry>
+		<plane>
+			<abcd>0 1 0 0</abcd>
+		</plane>
+		</geometry>
+		<shader>
+			<shaderinput>
+				diffuse
+				<color name="diffusecolor">0.5 0.5 0.8</color>
+			</shaderinput>
+		</shader>
+	</shape>
+	<light>
+		<multisample>1</multisample>
+		<transform>
+			<translation>0 5 -10</translation>
+		</transform>
+		<lightshape>
+			<arealight>
+				<lightcolor>3 3 3</lightcolor>
+				<rightaxis>1 0 0</rightaxis>
+				<upaxis>0 1 0</upaxis>
+				<sizeup>8</sizeup>
+				<sizeright>8</sizeright>
+			</arealight>
+		</lightshape>
+		<lightshape>
+		
+			<pointlight>
+				<lightcolor>3 3 3</lightcolor>
+			</pointlight>
+		</lightshape>
+	</light>
+	<camera>
+		<eyepoint>0 10 -10</eyepoint>
+		<orientation>180 45 0</orientation>
+		<fov>60</fov>
+	</camera>
+</scene>

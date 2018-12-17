@@ -1,0 +1,164 @@
+/* 
+Copyright (C) 2002 Urban Lassi, not for commercial use. 
+	Feel free to use it for learning or anything that you
+	wont make money out of.
+
+	Questions: mail me at urbla606@student.liu.se
+*/
+// vec3.h: interface for the vec3 class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#if !defined(AFX_VEC3_H__2B868D09_7101_40FF_BC51_3D0E3131EA27__INCLUDED_)
+#define AFX_VEC3_H__2B868D09_7101_40FF_BC51_3D0E3131EA27__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+#include "CommonTypes.h"
+#include <Math.h>
+//##ModelId=3DF799E200ED
+static const double DELTA = 0.0000001;	//Should be static, but sorry wont work
+class vec3  
+{
+public:
+	
+	//##ModelId=3DF8CFD60391
+	real elements[3];
+	
+	//Constructors
+	//##ModelId=3DF799E201D3
+	vec3::vec3() {elements[0] = 0.0f; elements[1] = 0.0f; elements[2] = 0.0f; }
+	
+	//##ModelId=3DF799E201DD
+	vec3::vec3(real xval, real yval,real zval)
+	{	elements[0] = xval;elements[1] = yval;elements[2] = zval;	}
+	
+	//get length of vector
+	//##ModelId=3DF799E201FB
+	real vec3::length(void)
+	{	return sqrt((elements[0]*elements[0] + elements[1]*elements[1] +elements[2]*elements[2])); }
+
+	//##ModelId=3DF799E2020F
+	real vec3::lengthSquared(void)
+	{	return (elements[0]*elements[0] + elements[1]*elements[1] +elements[2]*elements[2]); }
+	
+	//##ModelId=3DF799E20219
+	inline vec3::set(real xval, real yval, real zval)
+	{	
+		(fabs(xval) > DELTA) ? elements[0] = xval: elements[0] = 0;
+		(fabs(yval) > DELTA) ? elements[1] = yval: elements[1] = 0;
+		(fabs(zval) > DELTA) ? elements[2] = zval: elements[2] = 0;
+	}
+	
+	//normalize vector
+	//##ModelId=3DF799E20241
+	inline vec3::normalize(void)
+	{	real l = length();	
+		if (l != 0.0f)                 
+		{ 
+			elements[0] = elements[0]/l;
+			elements[1] = elements[1]/l;
+			elements[2] = elements[2]/l;
+		}
+		/*else
+		{	//is this correct? No!
+			elements[0] = 0.33f;
+			elements[1] = 0.33f;
+			elements[2] = 0.33f;
+		}*/
+
+	}
+	
+	//##ModelId=3DF799E2024C
+	inline vec3::equals( vec3 &Other )
+	{
+		if(elements[0] < Other.elements[0]*1.03f && elements[0] > Other.elements[0]*0.97f 
+		&& elements[1] < Other.elements[1]*1.03f && elements[1] > Other.elements[1]*0.97f
+		&& elements[2] < Other.elements[2]*1.03f && elements[2] > Other.elements[2]*0.97f)
+			return 1;
+
+		else
+			return 0;
+	}
+	inline real vec3::operator ,(const vec3 &ScaledOn) const
+	{	//returns scalar product of two vectors
+		return elements[0] * ScaledOn.elements[0] + 
+			   elements[1] * ScaledOn.elements[1] + 
+			   elements[2] * ScaledOn.elements[2];
+	}
+	inline vec3 vec3::operator *(const vec3 &Mult) const
+	{	//cross product on two vectors
+		return vec3(this->elements[1] * Mult[2] - Mult[1] * this->elements[2], 
+			this->elements[2] * Mult[0] - Mult[2] * this->elements[0], 
+			this->elements[0] * Mult[1] - Mult[0] * this->elements[1]);
+	}
+	inline vec3 vec3::operator *(const real scalar) const
+	{
+		return vec3(this->elements[0]*scalar,this->elements[1]*scalar,this->elements[2]*scalar);
+	}
+	inline vec3 vec3::operator *= (const real scalar)
+	{
+		this->elements[0] *= scalar;
+		this->elements[1] *= scalar;
+		this->elements[2] *= scalar;
+		return *this;
+	}
+	inline vec3 vec3::operator /(const real d) const
+	{	//divides vector elements with d
+		return vec3(elements[0]/d,elements[1]/d,elements[2]/d);
+		
+		
+	}
+	inline vec3 vec3::operator -(const vec3 &Sub) const
+	{	//subtract two vectors
+		vec3 ret(elements[0] - Sub.elements[0], elements[1] - Sub.elements[1], elements[2] - Sub.elements[2]);
+		return ret;
+	}
+	inline vec3 vec3::operator +(const vec3 &Add) const
+	{	//add two vectors
+		vec3 ret(elements[0] + Add.elements[0], elements[1] + Add.elements[1], elements[2] + Add.elements[2]);
+		return ret;
+	}
+	inline vec3 vec3::operator =(const vec3 &Other)
+	{	//set two vector equal
+		if (fabs(Other.elements[0]) > DELTA)
+			this->elements[0] = Other.elements[0];
+		else
+			this->elements[0] = 0;
+		if (fabs(Other.elements[1]) > DELTA)
+			this->elements[1] = Other.elements[1];
+		else
+			this->elements[1] = 0;
+		if (fabs(Other.elements[2]) > DELTA)
+			this->elements[2] = Other.elements[2];
+		else
+			this->elements[2] = 0;
+		return *this;
+	}
+	inline vec3 vec3::operator += (const vec3 &other)
+	{
+		this->elements[0] += other.elements[0];
+		this->elements[1] += other.elements[1];
+		this->elements[2] += other.elements[2];		
+		return *this;
+	}
+	inline vec3 vec3::operator -= (const vec3 &other) 
+	{
+		this->elements[0] -= other[0];
+		this->elements[1] -= other[1];
+		this->elements[2] -= other[2];
+		return *this;
+	}
+	inline real vec3::operator [](const int index) const
+	{
+		//if (index > 0 && index <3)
+			return elements[index];
+		//else 
+		//	return 0;
+	}
+	
+};
+//const double vec3::DELTA = 0.00000001; // double is not intergral type, must assign like this
+inline vec3 operator * (const double &d, const vec3 &v) { return v*d; };
+#endif // !defined(AFX_VEC3_H__2B868D09_7101_40FF_BC51_3D0E3131EA27__INCLUDED_)

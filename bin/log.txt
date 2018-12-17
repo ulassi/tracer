@@ -1,0 +1,6 @@
+
+ trace Started 
+------------------------ 
+ Rendering frame 
+ Done rendering : Success.
+Render took: 511secs.
